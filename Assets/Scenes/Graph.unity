@@ -225,11 +225,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df44fde8efe8945efa2e5c9aca3d475d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SizeX: 1
-  SizeZ: 1
-  StepsX: 100
-  StepsZ: 100
-  MaxSizeY: 0.1
+  ScaleX: 0.01
+  ScaleY: 0.5
+  ScaleZ: 0.1
+  VertexLimit: 100000
   DataFile: data.dat
 --- !u!54 &76383586
 Rigidbody:
