@@ -47,3 +47,6 @@ Assets/Plugins/*
 
 # Magic Leap Assets
 Assets/MagicLeap/*
+
+# Built file
+*.mpk

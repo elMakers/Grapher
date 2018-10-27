@@ -169,7 +169,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cc075a681d38a4cfca3367eee9f89091, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -230,6 +230,7 @@ MonoBehaviour:
   StepsX: 100
   StepsZ: 100
   MaxSizeY: 0.1
+  DataFile: data.dat
 --- !u!54 &76383586
 Rigidbody:
   m_ObjectHideFlags: 0
