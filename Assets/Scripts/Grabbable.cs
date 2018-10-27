@@ -5,7 +5,6 @@ public class Grabbable : MonoBehaviour
 {
 	public float RequiredConfidence = 0.9f;
 	public float GrabDistance = 2.0f;
-	public float GrabHeight = -0.5f;
 	
 	private Rigidbody _body;
 	private bool grabbed;
@@ -46,7 +45,7 @@ public class Grabbable : MonoBehaviour
 
 		if (grabbed)
 		{
-			_body.transform.position = Camera.main.transform.position + Camera.main.transform.forward * GrabDistance + Vector3.up * GrabHeight;
+			_body.transform.position = Camera.main.transform.position + Camera.main.transform.forward * GrabDistance;
 		}
 	}
 }
