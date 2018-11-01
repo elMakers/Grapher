@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GraphMesh : MonoBehaviour
 {
+	public int SkipX = 0;
 	public float ScaleX = 0.001f;
 	public float ScaleY = 0.00005f;
 	public float ScaleZ = 0.01f;
@@ -30,7 +31,6 @@ public class GraphMesh : MonoBehaviour
 			triangles.Add(row.Count * (x - 1) + z); //Top left
 			triangles.Add(row.Count * x + z); //Top right - Second triangle
 		}
-		row.Clear();
 	}
 	
 	// Use this for initialization
@@ -38,9 +38,15 @@ public class GraphMesh : MonoBehaviour
 	{
 		List<Vector3> vertices = new List<Vector3>();
 		List<int> triangles = new List<int>();
+
+		if (SkipX > 0)
+		{
+			ScaleX *= SkipX;
+		}
 			
 		// Import gnuplot file
 		int x = 0;
+		int rowNumber = 0;
 		Debug.Log("Loading: " + Application.persistentDataPath + '/' + DataFile);
 		StreamReader reader = new StreamReader(Application.persistentDataPath + '/' + DataFile);
 		List<float> currentRow = new List<float>();
@@ -53,8 +59,14 @@ public class GraphMesh : MonoBehaviour
 			{
 				if (currentRow.Count > 0)
 				{
-					AddRow(x, currentRow, vertices, triangles);
-					x++;
+					if (SkipX == 0 || rowNumber % SkipX == 0)
+					{
+						AddRow(x, currentRow, vertices, triangles);
+						x++;
+					}
+					currentRow.Clear();
+
+					rowNumber++;
 				}
 				if (VertexLimit > 0 && vertices.Count > VertexLimit) break;
 				continue;
@@ -89,7 +101,7 @@ public class GraphMesh : MonoBehaviour
 		mesh.uv = uvs;
 		mesh.normals = normals;
 		// MeshUtility.Optimize(mesh);
-		
+
 		transform.position = new Vector3(-ScaleX * x / 2, 0, -ScaleZ * currentRow.Count / 2);
 
 		GetComponent<MeshFilter>().mesh = mesh;
