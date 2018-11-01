@@ -9,6 +9,8 @@ public class GraphMesh : MonoBehaviour
 	public float ScaleX = 0.001f;
 	public float ScaleY = 0.00005f;
 	public float ScaleZ = 0.01f;
+	public float LabelScale = 0.05f;
+	public int ZLabelFrequency = 10;
 	public int VertexLimit = 0;
 	public float OutlierY = 0.0f;
 	public String DataFile = "data.dat";
@@ -38,6 +40,7 @@ public class GraphMesh : MonoBehaviour
 	{
 		List<Vector3> vertices = new List<Vector3>();
 		List<int> triangles = new List<int>();
+		List<double> zLabels = new List<double>();
 
 		if (SkipX > 0)
 		{
@@ -74,6 +77,11 @@ public class GraphMesh : MonoBehaviour
 
 			String[] pieces = line.Split(' ');
 			float value = (float) Double.Parse(pieces[2]);
+			if (x == 0)
+			{
+				float label = (float)Double.Parse(pieces[1]);
+				zLabels.Add(label);
+			}
 			if (OutlierY > 0 && value > OutlierY) value = 0;
 			currentRow.Add(value);
 		}
@@ -105,5 +113,18 @@ public class GraphMesh : MonoBehaviour
 		transform.position = new Vector3(-ScaleX * x / 2, 0, -ScaleZ * currentRow.Count / 2);
 
 		GetComponent<MeshFilter>().mesh = mesh;
+
+		Debug.Log("Creating " + zLabels.Count + " Price labels");
+		// Add labels
+		for (var labelZ = 0; labelZ < zLabels.Count; labelZ += ZLabelFrequency)
+		{
+			var testObject = new GameObject();
+			TextMesh text = testObject.AddComponent<TextMesh>();
+			text.text = zLabels[labelZ].ToString("C");
+			text.anchor = TextAnchor.MiddleRight;
+			testObject.transform.parent = transform;
+			testObject.transform.position = new Vector3(-ScaleX * x / 2, 0, labelZ * ScaleZ);
+			testObject.transform.localScale = Vector3.one * LabelScale;
+		}
 	}
 }
