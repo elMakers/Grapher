@@ -73,6 +73,10 @@ public class GraphMesh : MonoBehaviour
 
 		reader.Close();
 		Debug.Log("Loaded " + vertices.Count + " verts x " + triangles.Count + " triangles");
+
+		Vector3[] normals = new Vector3[vertices.Count];
+		for (var i = 0; i < normals.Length; i++) //Give UV coords X,Z world coords
+			normals[i] = Vector3.up;
 		
 		Vector2[] uvs = new Vector2[vertices.Count];
 		for (var i = 0; i < uvs.Length; i++) //Give UV coords X,Z world coords
@@ -83,6 +87,10 @@ public class GraphMesh : MonoBehaviour
 		mesh.vertices = vertices.ToArray();
 		mesh.triangles = triangles.ToArray();
 		mesh.uv = uvs;
+		mesh.normals = normals;
+		// MeshUtility.Optimize(mesh);
+		
+		transform.position = new Vector3(-ScaleX * x / 2, 0, -ScaleZ * currentRow.Count / 2);
 
 		GetComponent<MeshFilter>().mesh = mesh;
 	}
