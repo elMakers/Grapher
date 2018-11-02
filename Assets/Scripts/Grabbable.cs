@@ -29,13 +29,13 @@ public class Grabbable : MonoBehaviour
 		}
 		switch (pose)
 		{
-			case MLHandKeyPose.C:
+			case MLHandKeyPose.OpenHandBack:
 				if (grabbed)
 				{
 					grabbed = false;
 				}
 				break;
-			case MLHandKeyPose.Pinch:
+			case MLHandKeyPose.L:
 				if (!grabbed)
 				{
 					grabbed = true;
