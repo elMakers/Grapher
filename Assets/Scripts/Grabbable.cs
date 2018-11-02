@@ -46,6 +46,10 @@ public class Grabbable : MonoBehaviour
 		if (grabbed)
 		{
 			_body.transform.position = Camera.main.transform.position + Camera.main.transform.forward * GrabDistance;
+			var targetRotation = Camera.main.transform.rotation.eulerAngles;
+			targetRotation.x = 0;
+			targetRotation.z = 0;
+			_body.transform.rotation = Quaternion.Euler(targetRotation);
 		}
 	}
 }
