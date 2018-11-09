@@ -21,7 +21,9 @@ public class GraphMesh : MonoBehaviour
 		for (int z = 0; z < row.Count; z++)
 		{
 			//Add each new vertex in the plane
-			vertices.Add(new Vector3(ScaleX * x, row[z] * ScaleY, ScaleZ * z));
+			var y = row[z];
+			y = y < 0 ? -Mathf.Log(-y) : (y > 0 ? Mathf.Log(y) : 0);
+			vertices.Add(new Vector3(ScaleX * x, y * ScaleY, ScaleZ * z));
 
 			//Skip if a new square on the plane hasn't been formed
 			if (x == 0 || z == 0) continue;
@@ -84,7 +86,7 @@ public class GraphMesh : MonoBehaviour
 			}
 
 			String[] pieces = line.Split(' ');
-			float value = (float) Double.Parse(pieces[2]);
+			float value = (float) Double.Parse(pieces[3]);
 			if (x == 0)
 			{
 				float label = (float)Double.Parse(pieces[1]);
