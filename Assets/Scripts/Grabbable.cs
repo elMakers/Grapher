@@ -18,7 +18,7 @@ public class Grabbable : MonoBehaviour
 	// Update is called once per frame
 	private void Update()
 	{
-		MLHandKeyPose pose = MLHandKeyPose.NoHand;
+		MLHandKeyPose pose = MLHandKeyPose.NoHand;		
 		if (MLHands.Right.KeyPoseConfidence >= RequiredConfidence && MLHands.Right.KeyPose != MLHandKeyPose.NoHand)
 		{
 			pose = MLHands.Right.KeyPose;
@@ -35,7 +35,7 @@ public class Grabbable : MonoBehaviour
 					grabbed = false;
 				}
 				break;
-			case MLHandKeyPose.L:
+			case MLHandKeyPose.Ok:
 				if (!grabbed)
 				{
 					grabbed = true;
