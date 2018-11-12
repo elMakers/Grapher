@@ -133,6 +133,7 @@ public class GraphMesh : MonoBehaviour
 			TextMesh text = testObject.AddComponent<TextMesh>();
 			text.text = zLabels[labelZ].ToString("C");
 			text.anchor = TextAnchor.MiddleRight;
+			text.color = Color.cyan;
 			testObject.transform.parent = transform;
 			testObject.transform.position = new Vector3(-ScaleX * x / 2, 0, labelZ * ScaleZ - ScaleZ * zLabels.Count / 2);
 			testObject.transform.localScale = Vector3.one * LabelScale;
@@ -151,6 +152,7 @@ public class GraphMesh : MonoBehaviour
 			TextMesh text = testObject.AddComponent<TextMesh>();
 			text.text = xLabels[labelX] + ":00";
 			text.anchor = TextAnchor.MiddleLeft;
+			text.color = Color.cyan;
 			testObject.transform.parent = transform;
 			testObject.transform.position = new Vector3(labelX * LabelScaleX - ScaleX * x / 2, 0, -ScaleZ * zLabels.Count / 2);
 			testObject.transform.localScale = Vector3.one * LabelScale;
