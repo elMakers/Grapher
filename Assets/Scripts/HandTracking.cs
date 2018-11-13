@@ -13,7 +13,7 @@ public class HandTracking : MonoBehaviour
         }
         else
         {
-            MLHandKeyPose[] poseSet = {MLHandKeyPose.OpenHandBack, MLHandKeyPose.Ok};
+            MLHandKeyPose[] poseSet = {MLHandKeyPose.Pinch};
             var status = MLHands.KeyPoseManager.EnableKeyPoses(poseSet, true, true);
             if (!status)
             {
