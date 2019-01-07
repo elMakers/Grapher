@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RequiredConfidence: 0.9
-  GrabDistance: 0.8
+  GrabDistance: 1
 --- !u!4 &1766623242
 Transform:
   m_ObjectHideFlags: 0

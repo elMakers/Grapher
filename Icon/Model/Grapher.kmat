@@ -5,7 +5,7 @@
 		{
 			"albedo" : "Icon/Model/Grapher_Albedo.png",
 			"blendmode" : "opaque",
-			"name" : "com_focusvq_grapher_MainMat",
+			"name" : "com_elmakers_grapher_MainMat",
 			"shaderName" : "UnlitTextured"
 		}
 	]
